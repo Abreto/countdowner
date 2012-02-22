@@ -1,13 +1,13 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "mainwidget.h"
+#include "ui_mainwidget.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow),
+MainWidget::MainWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::MainWidget),
     to(QDate(2012, 4, 10), QTime(0,0))
 {
     ui->setupUi(this);
-    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint );
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);// | Qt::FramelessWindowHint );
     setAttribute(Qt::WA_TranslucentBackground, true);
     move(100,50);
 
@@ -16,12 +16,12 @@ MainWindow::MainWindow(QWidget *parent) :
     main_timer->start(1000);
 }
 
-MainWindow::~MainWindow()
+MainWidget::~MainWidget()
 {
     delete ui;
 }
 
-void MainWindow::update_time()
+void MainWidget::update_time()
 {
     int days = 0, hours = 0, mins = 0, secs = 0, tc = 0;
 
@@ -38,4 +38,10 @@ void MainWindow::update_time()
     ui->lhours->setText( format_num(hours) );
     ui->lmins->setText( format_num(mins) );
     ui->lsecs->setText( format_num(secs) );
+}
+
+void MainWidget::paintEvent(QPaintEvent *e)
+{
+    QPainter p(this );
+    p.fillRect(rect(), QColor(0,0xff,0,30));
 }
