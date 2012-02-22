@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     to(QDate(2012, 4, 10), QTime(0,0))
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Popup);
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);
     setWindowOpacity( qreal(0.5) );
     move(100,50);
 
