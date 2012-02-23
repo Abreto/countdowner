@@ -4,11 +4,11 @@
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget),
-    to(QDate(2012, 4, 10), QTime(0,0))
+    to(QDate(2012, 4, 10), QTime(9,0))
 {
     ui->setupUi(this);
-    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);// | Qt::FramelessWindowHint );
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint );
+    //setAttribute(Qt::WA_TranslucentBackground, true);
     move(100,50);
 
     main_timer = new QTimer(this);
@@ -31,7 +31,7 @@ void MainWidget::update_time()
     hours = (int)(tc/60/60);    // 计算时数
     tc -= hours*60*60;
     mins = (int)(tc/60);        // 计算分数
-    tc -= hours*60;
+    tc -= mins*60;
     secs = tc%60;               // 计算秒数
 
     ui->ldays->setText( format_num(days) );
@@ -43,5 +43,5 @@ void MainWidget::update_time()
 void MainWidget::paintEvent(QPaintEvent *e)
 {
     QPainter p(this );
-    p.fillRect(rect(), QColor(0,0xff,0,30));
+    p.fillRect(rect(), QColor(0xff,0,0,10));
 }

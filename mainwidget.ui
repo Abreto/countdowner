@@ -121,7 +121,7 @@ Abreto 2012.</string>
     </font>
    </property>
    <property name="text">
-    <string>距离直升考试还有</string>
+    <string>距离直升考试仅剩</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
